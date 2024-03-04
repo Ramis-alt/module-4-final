@@ -1,4 +1,32 @@
-# React + Vite
+# Module 4 Final Project
+
+## About The Project:
+
+This is a task application created for a class project meant to cover all aspects of a full-stack application.
+
+## Dependencies:
+The following dependencies are needed for this project.
+- cors
+- bcrypt
+- body-parser
+- dotenv
+- express
+- mysql
+- mysql2
+- nodemon (as a devDependency)
+
+## The Project was created using the following languages, libraries/framework and database management:
+- Javascrip
+- React
+- HTML
+- CSS
+- Bootstrap
+- Express
+- MySQL Workbench
+
+## External sources used to aid in brainstorming as well as creating the front end of the application:
+
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
