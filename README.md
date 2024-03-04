@@ -27,6 +27,13 @@ The following dependencies are needed for this project.
 
 ## External sources used to aid in brainstorming as well as creating the front end of the application:
 
+(`https://www.figma.com/`) 
+Aided in wireframing and sketching of my project
+
+(`https://chat.openai.com`)
+Aided in troubleshooting bugs in code
+
+
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
