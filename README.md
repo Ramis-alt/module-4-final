@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Module 4 Final Project
 
 ## About The Project:
@@ -34,3 +35,6 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+=======
+# module-4-final
+>>>>>>> 4f702fdcc7094188fa313d72a771edd675634ae2
