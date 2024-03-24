@@ -13,6 +13,7 @@ import DropdownMenu from './DropdownMenu';
 //each of the h3 elements will be update through useState and the backend
 
 const Sidebar = () => {
+  // create a state for the sidebar
   // const {open, setOpen} = React.useState(false)
   // console.log(open)
   return (

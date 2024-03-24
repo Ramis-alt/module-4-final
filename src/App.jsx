@@ -6,7 +6,7 @@ import MainPage from './assets/components/pages/MainPage'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './assets/components/pages/Login';
 import RegisterPage from './assets/components/pages/RegisterPage';
-//see if you can get rid of the Reac.Fragment
+//see if you can get rid of the React.Fragment
 function App() {
   return (
     <Router>

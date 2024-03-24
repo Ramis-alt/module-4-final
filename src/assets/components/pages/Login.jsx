@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 //instead of those p elements I will render two components
 //the left side will have a description of the app
@@ -32,7 +33,7 @@ const Login = () => {
               <input type='password' className='form--control' id='password' onChange={e => setPassword(e.target.value)}/>
             </div>
             <button type='submit' className='btn btn-primary edit--login-button'>Login</button>
-            <p className='align--login--text'>Don't have an account? <a href='/register'>Register</a></p>
+            <p className='align--login--text'>Don't have an account? <Link to='/register'>Register</Link></p>
           </form>
         </div>
       </div>

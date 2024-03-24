@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Link } from 'react-router-dom'
 // import register from '../src/ApiServices/AuthService';
 // import register from "../../../ApiServices/AuthService/AuthService";
 import { register, LogIn } from "../../../ApiServices/AuthService";
@@ -64,7 +65,7 @@ const RegisterPage = () => {
           <Button variant="primary" type="submit">
             Submit
           </Button>
-          <p><a href='/'>Back to login page.</a></p>
+          <p><Link to='/'>Back to login page.</Link></p>
         </Form>
       </div>
     </div>
