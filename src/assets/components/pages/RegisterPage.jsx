@@ -28,9 +28,9 @@ const RegisterPage = () => {
     const { jwt, success } = await register({ username, password });
 
     if (success) {
-      localStorage.setItem('car-app-jwt', jwt);
+      localStorage.setItem('task-app-jwt', jwt);
       // setUser(jwt); // Need to add setUser function
-      navigate('/home');
+      navigate('/main');
     } else {
       alert('Error registering');
     }
