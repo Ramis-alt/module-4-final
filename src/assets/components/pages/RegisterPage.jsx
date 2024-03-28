@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 // import register from '../src/ApiServices/AuthService';
 // import register from "../../../ApiServices/AuthService/AuthService";
 import { register, LogIn } from "../../../ApiServices/AuthService";
+import { setUser } from "../../../ApiServices/UserService";
 
 const RegisterPage = () => {
 
@@ -29,7 +30,7 @@ const RegisterPage = () => {
 
     if (success) {
       localStorage.setItem('task-app-jwt', jwt);
-      // setUser(jwt); // Need to add setUser function
+      setUser(jwt); 
       navigate('/main');
     } else {
       alert('Error registering');
@@ -62,7 +63,7 @@ const RegisterPage = () => {
               value={password} // Controlled component
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={() => handleRegisterClick()}>
             Submit
           </Button>
           <p><Link to='/'>Back to login page.</Link></p>
