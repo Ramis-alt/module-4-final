@@ -1,20 +1,43 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import { useState } from 'react'
+import { setUser } from '../../../ApiServices/UserService'
+import { LogIn } from '../../../ApiServices/AuthService'
 
 //instead of those p elements I will render two components
 //the left side will have a description of the app
 //the right side will have a login form and a link to the register page
 
 const Login = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  function handleSubmit(e) {
-    e.preventDefault()
+
+  const navigate = useNavigate();
+
+  // function handleSubmit(e) {
+  //   e.preventDefault()
     
-    console.log('username:', username)
-    console.log('password)', password)
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
   }
+    // console.log('username:', username)
+    // console.log('password)', password)
+
+    const handlePasswordChange = (event) => {
+      setPassword(event.target.value);
+    }
+    const handleLogin = async (event) => {
+      event.preventDefault(); // Prevent the default form submission action, prevents page from refreshing
+      const { jwt, success } = await LogIn({ username, password });
+      if (success) {
+        localStorage.setItem('task-app-jwt', jwt);
+        setUser(jwt);
+        navigate('/main');
+      } else {
+        alert('Error logging in');
+      }
+    }
   return (
     <div className='login--body--container'>
       <div className='login--container'>
@@ -23,14 +46,14 @@ const Login = () => {
           <p>Create & edit tasks with ease</p>
         </div>
         <div className='right--side--container'>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleLogin}> 
             <div className='form--group'>
               <label htmlFor='username'>Username</label>
-              <input type='text' className='form--control' id='username' onChange={e => setUsername(e.target.value)}/>
+              <input type='text' className='form--control' id='username' onChange={(event) => handleUsernameChange(event)}/>
             </div>
             <div className='form--group'>
               <label htmlFor='password'>Password</label>
-              <input type='password' className='form--control' id='password' onChange={e => setPassword(e.target.value)}/>
+              <input type='password' className='form--control' id='password' onChange={(event) => handlePasswordChange(event)}/>
             </div>
             <button type='submit' className='btn btn-primary edit--login-button'>Login</button>
             <p className='align--login--text'>Don't have an account? <Link to='/register'>Register</Link></p>

@@ -145,36 +145,42 @@ app.use(async function verifyJwt(req, res, next) {
 
   await next();
 });
-
-app.post('/car', async (req, res) => {
+//creates new
+app.post('/user-new-content', async (req, res) => {
   const { 
-    newMakeValue,
-    newModelValue,
-    newYearValue
+    newTitleValue,
+    newContentValue,
+    newDateValue
   } = req.body;
 
   const { userId } = req.user;
 
-  const [insert] = await req.db.query(`
-    INSERT INTO car (make, model, year, date_created, user_id, deleted_flag)
-    VALUES (:newMakeValue, :newModelValue, :newYearValue, NOW(), :user_id, :deleted_flag);
-  `, { 
-    newMakeValue, 
-    newModelValue,
-    newYearValue,
-    user_id: userId, 
-    deleted_flag: 0
-  });
+  try {
+    const [insert] = await req.db.query(`
+      INSERT INTO user_data (title, content, user_accounts_id, deleted_flag, created_at)
+      VALUES (:newTitleValue, :newContentValue, :userId, :deleted_flag, :newDateValue);
+    `, { 
+      newTitleValue, // placeholder for the title
+      newContentValue, // placeholder for the content
+      userId, // placeholder for the user id
+      deleted_flag: 0, // placeholder for the deleted flag
+      newDateValue // placeholder for the created_at date
+    });
 
-  // Attaches JSON content to the response
-  res.json({
-    id: insert.insertId,
-    newMakeValue,
-    newModelValue,
-    newYearValue,
-    userId
-   });
+    // Attaches JSON content to the response
+    res.json({
+      id: insert.insertId,
+      title: newTitleValue,
+      content: newContentValue,
+      user_accounts_id: userId,
+      created_at: newDateValue
+    });
+  } catch (err) {
+    console.log('Error in /user-new-content', err);
+    res.status(500).json({ message: 'Internal Server Error', success: false });
+  }
 });
+
 
 app.put('/car', async (req, res) => {
   const { id, make, model, year } = req.body;
@@ -192,14 +198,14 @@ app.put('/car', async (req, res) => {
   res.json({ id, make, model, year, success: true });
 })
 
-// Creates a GET endpoint at <WHATEVER_THE_BASE_URL_IS>/car
-app.get('/car', async (req, res) => {
+// Creates a GET endpoint at <WHATEVER_THE_BASE_URL_IS>/user-content
+app.get('/user-content', async (req, res) => {
   const { userId } = req.user;
 
-  const [cars] = await req.db.query(`SELECT * FROM car WHERE user_accounts = :userId AND deleted_flag = 0;`, { userId });
+  const [userData] = await req.db.query(`SELECT * FROM user_accounts WHERE id = :userId AND deleted_flag = 0;`, { userId });
 
   // Attaches JSON content to the response
-  res.json({ cars });
+  res.json({ userData });
 });
 
 app.delete('/car/:id', async (req, res) => {

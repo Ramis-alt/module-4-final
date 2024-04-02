@@ -46,8 +46,8 @@ const RegisterPage = () => {
             <Form.Control 
               type="email" 
               placeholder="Enter email" 
-              onChange={handleUsernameChange} // Added onChange event listener
-              value={username} // Controlled component
+              onChange={(event) => handleUsernameChange(event)} // Added onChange event listener
+              value={username} // Controlled component by state 
             />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
@@ -59,11 +59,11 @@ const RegisterPage = () => {
             <Form.Control 
               type="password" 
               placeholder="Password" 
-              onChange={handlePasswordChange} // Added onChange event listener
+              onChange={(event) => handlePasswordChange(event)} // Added onChange event listener
               value={password} // Controlled component
             />
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={() => handleRegisterClick()}>
+          <Button variant="primary" type="submit">
             Submit
           </Button>
           <p><Link to='/'>Back to login page.</Link></p>
