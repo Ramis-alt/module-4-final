@@ -181,21 +181,22 @@ app.post('/user-new-content', async (req, res) => {
   }
 });
 
+//updates existing data
+app.put('/update_content', async (req, res) => {
+  const { id, title, content, created_at } = req.body;
 
-app.put('/car', async (req, res) => {
-  const { id, make, model, year } = req.body;
-
-  const [cars] = await req.db.query(
-    `UPDATE car SET make = :make, model = :model, year = :year WHERE id = :id;`, 
+  const [tasks] = await req.db.query(
+    `UPDATE user_data SET title = :updatedTitle, content = :updatedContent, created_at = :updatedDate WHERE user_accounts_id = :userId AND id = :id;`, 
     { 
       id,
-      make,
-      model,
-      year
+      userId,
+      title: updatedTitle,
+      content: updatedContent,
+      created_at: updatedDate
      });
 
   // Attaches JSON content to the response
-  res.json({ id, make, model, year, success: true });
+  res.json({ id, title, content, created_at, success: true });
 })
 
 // Creates a GET endpoint at <WHATEVER_THE_BASE_URL_IS>/user-content
@@ -208,10 +209,10 @@ app.get('/user-content', async (req, res) => {
   res.json({ userData });
 });
 
-app.delete('/car/:id', async (req, res) => {
-  const { id: carId } = req.params;
+app.delete('/delete_content/:id', async (req, res) => {
+  const { id: contentId } = req.params;
 
-  await req.db.query(`UPDATE car SET deleted_flag = 1 WHERE id = :carId`, { carId })
+  await req.db.query(`UPDATE user_data SET deleted_flag = 1 WHERE id = :contentId`, { contentId })
 
   res.json({ success: true });
 })
