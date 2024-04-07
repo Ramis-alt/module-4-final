@@ -157,7 +157,7 @@ app.post('/user-new-content', async (req, res) => {
 
   try {
     const [insert] = await req.db.query(`
-      INSERT INTO user_data (title, content, user_accounts_id, deleted_flag, created_at)
+      INSERT INTO user_accounts (title, content, id, deleted_flag, created_at)
       VALUES (:newTitleValue, :newContentValue, :userId, :deleted_flag, :newDateValue);
     `, { 
       newTitleValue, // placeholder for the title
@@ -177,7 +177,7 @@ app.post('/user-new-content', async (req, res) => {
     });
   } catch (err) {
     console.log('Error in /user-new-content', err);
-    res.status(500).json({ message: 'Internal Server Error', success: false });
+    res.status(500).json({ message: 'Internal Server Error, could not create new content', success: false });
   }
 });
 
@@ -186,7 +186,7 @@ app.put('/update_content', async (req, res) => {
   const { id, title, content, created_at } = req.body;
 
   const [tasks] = await req.db.query(
-    `UPDATE user_data SET title = :updatedTitle, content = :updatedContent, created_at = :updatedDate WHERE user_accounts_id = :userId AND id = :id;`, 
+    `UPDATE user_accounts SET title = :updatedTitle, content = :updatedContent, created_at = :updatedDate WHERE user_accounts = :userId AND id = :id;`, 
     { 
       id,
       userId,
@@ -201,21 +201,33 @@ app.put('/update_content', async (req, res) => {
 
 // Creates a GET endpoint at <WHATEVER_THE_BASE_URL_IS>/user-content
 app.get('/user-content', async (req, res) => {
-  const { userId } = req.user;
+  try {
+    const { userId } = req.user;
 
-  const [userData] = await req.db.query(`SELECT * FROM user_accounts WHERE id = :userId AND deleted_flag = 0;`, { userId });
+    const [userData] = await req.db.query(`SELECT * FROM user_accounts WHERE id = :userId AND deleted_flag = 0;`, { userId });
 
-  // Attaches JSON content to the response
-  res.json({ userData });
+    // Attaches JSON content to the response
+    res.json({ userData });
+  } catch (error) {
+    console.error('Error fetching user content:', error);
+    res.status(500).json({ success: false, error: 'Failed to fetch user content' });
+  }
 });
+
 
 app.delete('/delete_content/:id', async (req, res) => {
   const { id: contentId } = req.params;
 
-  await req.db.query(`UPDATE user_data SET deleted_flag = 1 WHERE id = :contentId`, { contentId })
+  try {
+    await req.db.query(`UPDATE user_accounts SET deleted_flag = 1 WHERE id = :contentId`, { contentId });
 
-  res.json({ success: true });
-})
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting content:', error);
+    res.status(500).json({ success: false, error: 'Failed to delete content' });
+  }
+});
+
 
 // Start the Express server
 app.listen(port, () => {

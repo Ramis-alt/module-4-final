@@ -4,7 +4,7 @@ import { getJwt } from './JwtService';
 // all get imported into MainPage.jsx
 
 export const createTask = async (body) => {
-  const response = await fetch(`${API_URL}/user_data`, {
+  const response = await fetch(`${API_URL}/user_accounts`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ export const createTask = async (body) => {
 };
 
 export const getTasks = async () => {
-  const response = await fetch(`${API_URL}/user_data`, {
+  const response = await fetch(`${API_URL}/user_accounts`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${getJwt()}`
@@ -32,7 +32,7 @@ export const getTasks = async () => {
 };
 
 export const deleteTask = async (taskId) => {
-  const response = await fetch(`${API_URL}/user_data/${taskId}`, {
+  const response = await fetch(`${API_URL}/user_accounts/${taskId}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${getJwt()}`
@@ -45,7 +45,7 @@ export const deleteTask = async (taskId) => {
 };
 
 export const updateTask = async (body) => {
-  const response = await fetch(`${API_URL}/user_data`, {
+  const response = await fetch(`${API_URL}/user_accounts`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
