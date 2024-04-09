@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import {removeJwt} from '../services/auth.service'
+
+import { removeJwt } from '../../ApiServices/JwtService'
 
 const Navbar = () => {
   const navigate = useNavigate()

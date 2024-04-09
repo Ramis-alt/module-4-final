@@ -62,9 +62,6 @@ app.use(async (req, res, next) => {
 app.post('/register', async function (req, res) {
   try {
     const { password, username } = req.body;
-
-    
-
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const [user] = await req.db.query(
@@ -88,7 +85,7 @@ app.post('/log-in', async function (req, res) {
   try {
     const { username, password: userEnteredPassword } = req.body;
 
-    const [[user]] = await req.db.query(`SELECT * FROM user WHERE user_name = :username`, { username });
+    const [[user]] = await req.db.query(`SELECT * FROM user_accounts WHERE user_name = :username`, { username });
 
     if (!user) res.json('Username not found');
   

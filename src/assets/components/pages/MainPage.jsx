@@ -5,8 +5,8 @@ import Sidebar from '../Sidebar'
 import MainContent from '../MainContent'
 import Footer from '../Footer'
 import { Link } from 'react-router-dom'
-import {createTask, getTasks, deleteTask, updateTask} from '../../ApiServices/TasksService'
-import { getUser } from '../../../ApiServices/UserService'
+// import {createTask, getTasks, deleteTask, updateTask} from '../../ApiServices/TasksService'
+// import { getUser } from '../../../ApiServices/UserService'
 
 const MainPage = () => {
   return (

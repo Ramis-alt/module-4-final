@@ -1,4 +1,5 @@
-import { API_URL } from '../environment';
+// import { API_URL } from '../environment';
+import { API_URL } from '../environments';
 import { getJwt } from './JwtService';
 
 // all get imported into MainPage.jsx

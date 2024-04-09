@@ -4,10 +4,10 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-// import register from '../src/ApiServices/AuthService';
-// import register from "../../../ApiServices/AuthService/AuthService";
-import { register, LogIn } from "../../../ApiServices/AuthService";
+
+import { register } from "../../../ApiServices/AuthService";
 import { setUser } from "../../../ApiServices/UserService";
+import { setJwt } from "../../../ApiServices/JwtService";
 
 const RegisterPage = () => {
 
@@ -27,9 +27,10 @@ const RegisterPage = () => {
   const handleRegisterClick = async (event) => {
     event.preventDefault(); // Prevent the default form submit action
     const { jwt, success } = await register({ username, password });
-
+   
     if (success) {
       localStorage.setItem('task-app-jwt', jwt);
+      setJwt(jwt);
       setUser(jwt); 
       navigate('/main');
     } else {

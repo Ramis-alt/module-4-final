@@ -27,6 +27,8 @@ const Login = () => {
     const handlePasswordChange = (event) => {
       setPassword(event.target.value);
     }
+
+    //did the handleLogin function and the form onSubmit event listener in order to enable user to press enter to submit the form
     const handleLogin = async (event) => {
       event.preventDefault(); // Prevent the default form submission action, prevents page from refreshing
       const { jwt, success } = await LogIn({ username, password });

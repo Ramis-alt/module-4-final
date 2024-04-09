@@ -1,8 +1,7 @@
-import { API_URL } from '/src/enviroments';
-
+import { API_URL } from "../environments";
 // Removed the AuthRequestBody interface
 
-export const register = async (body) => { // Removed type annotation
+export const register = async (body) => {
   const response = await fetch(`${API_URL}/register`, {
     method: 'POST',
     headers: { 
@@ -16,7 +15,7 @@ export const register = async (body) => { // Removed type annotation
   return data;
 }
 
-export const LogIn = async (body) => { // Removed type annotation
+export const LogIn = async (body) => { 
   const response = await fetch(`${API_URL}/log-in`, {
     method: 'POST',
     headers: { 
