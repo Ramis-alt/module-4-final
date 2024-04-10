@@ -60,10 +60,11 @@ app.use(async (req, res, next) => {
 
 // Hashes the password and inserts the info into the `user` table
 app.post('/register', async function (req, res) {
+  console.log(req.body)
   try {
     const { password, username } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-
+    console.log(`${hashedPassword}`)
     const [user] = await req.db.query(
       `INSERT INTO user_accounts (user_name, user_password)
       VALUES (:username, :hashedPassword);`,
@@ -84,12 +85,13 @@ app.post('/register', async function (req, res) {
 app.post('/log-in', async function (req, res) {
   try {
     const { username, password: userEnteredPassword } = req.body;
-
+      console.log(req.body );
     const [[user]] = await req.db.query(`SELECT * FROM user_accounts WHERE user_name = :username`, { username });
-
+      console.log(user)
     if (!user) res.json('Username not found');
   
-    const hashedPassword = `${user.password}`
+    const hashedPassword = `${user.user_password}`
+    console.log(hashedPassword)
     const passwordMatches = await bcrypt.compare(userEnteredPassword, hashedPassword);
 
     if (passwordMatches) {
