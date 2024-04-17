@@ -10,7 +10,7 @@ const Footer = () => {
    <div className='form--container'>
     <form className='form--edit'>
       <label></label>
-        <input className='input--footer' type='text' placeholder='search text'></input>
+        <input className='input--footer' type='text' placeholder='insert text'></input>
     </form>
    </div>
    <div className="button--footer--container">

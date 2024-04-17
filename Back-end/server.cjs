@@ -91,13 +91,13 @@ app.post('/log-in', async function (req, res) {
     if (!user) res.json('Username not found');
   
     const hashedPassword = `${user.user_password}`
-    console.log(hashedPassword)
+    // console.log(hashedPassword)
     const passwordMatches = await bcrypt.compare(userEnteredPassword, hashedPassword);
 
     if (passwordMatches) {
       const payload = {
         userId: user.id,
-        username: user.username
+        username: user.user_name //Changed this to from user.username to user.user_name
       }
       
       const jwtEncodedUser = jwt.sign(payload, process.env.JWT_KEY);

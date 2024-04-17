@@ -27,24 +27,24 @@ const Sidebar = () => {
   //   fetchUser();
   // }, [])
 
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+//   useEffect(() => {
+//     fetchTasks();
+//   }, []);
 
-  const fetchTasks = async () => {
-    const tasks = await getTasks();
-    setTitulo(tasks.title);
-  }
+//   const fetchTasks = async () => {
+//     const tasks = await getTasks();
+//     setTitulo(tasks.title);
+//   }
 
- const handleCreatedTitle = async () => {
-    await createTask({ newTitleValue });
-    fetchTasks();
- }
+//  const handleCreatedTitle = async () => {
+//     await createTask({ newTitleValue });
+//     fetchTasks();
+//  }
 
- const handleDeletedTitle = async (id) => {
-    await deleteTask(id);
-    fetchTasks();
-  }
+//  const handleDeletedTitle = async (id) => {
+//     await deleteTask(id);
+//     fetchTasks();
+//   }
 
   const handleUpdateTitle = async (id) => {
     await updateTask({ id, title: currentTitleEditing });
