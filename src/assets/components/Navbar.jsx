@@ -2,7 +2,6 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-// import { getTasks, createTask, deleteTask, updateTask } from '../../ApiServices/TasksService'
 import { removeJwt } from '../../ApiServices/JwtService'
 import { getUser } from '../../ApiServices/UserService'
 

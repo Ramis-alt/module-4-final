@@ -12,10 +12,8 @@ function DropdownMenu() {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">Rename</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">Create</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Update</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Get</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">Rename Title</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">Create Title</Dropdown.Item>
         <Dropdown.Item href="#/action-3">Delete</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>

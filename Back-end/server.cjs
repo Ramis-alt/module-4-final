@@ -147,13 +147,12 @@ app.use(async function verifyJwt(req, res, next) {
 //creates new
 app.post('/user-new-content', async (req, res) => {
   const { 
-    newTitleValue,
     newContentValue,
     newDateValue
   } = req.body;
 
   const { userId } = req.user;
-
+  const newTitleValue = "New Task"; // hardcoding the placeholder for the title so that it can be updated later
   try {
     const [insert] = await req.db.query(`
       INSERT INTO user_accounts (title, content, id, deleted_flag, created_at)

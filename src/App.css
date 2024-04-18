@@ -87,6 +87,8 @@
 
 .sidebar--bar{
   grid-area: sidebar;
+  display: flex;
+  padding: 0px;
   /* width: 200px; */
 }
 
@@ -131,7 +133,6 @@
   border-radius: 5px;
   border: none;
 }
-
 
 
 .footer--button {
@@ -180,9 +181,14 @@
 
 /* CSS for sidebar on main */
 aside {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* gap: 10px; */
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  border-radius: 5px;
+  color: white;
+  margin: 5px;
+  width: 100%;
+  /* grid-template-columns: repeat(2,1fr); */
 }
 
 .scrolldown--edit {
@@ -192,41 +198,33 @@ aside {
   cursor: pointer;
 }
 
-/* .scrolldown--edit:hover {
-  background-color: #e74c3c;
-  background: transparent;
-} */
 
-.sidebar--edit {
-  grid-column: 1;
+.side--content {
+  display: inline-flex;
+  /* flex-wrap: nowrap; */
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: space-evenly;
+  align-items: center;
+  background-color: #6c6b65;
+  padding: 2px;
+  margin: 5px;
+  gap: 10px;
+  /* border: #e74c3c 1px solid; */
+  border-radius: 5px;
 }
 
-.sidebar--dropdown {
-  grid-column: 2;
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  /* align-self: end; */
-  align-items: start;
-  /* position: relative; */
-}
-
-/* .fixed--button{
-  position: absolute;
-  outline: none;
-} */
 
 .btn-no-outline:focus {
   outline: none;
 }
 
 .tasks--edit {
-  /* width: 10vw; */
+  width: 10vw; 
   color: #d9d9d9;
-  background-color: #6c6b65;
-  padding: 5px;
-  border-radius: 5px;
-  text-align: center;
+  margin: 10px;
+  text-wrap: none;
+  gap: 10px;
 }
 
 
