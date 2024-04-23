@@ -170,7 +170,7 @@ app.post('/user-new-content', async (req, res) => {
       id: insert.insertId,
       title: newTitleValue,
       content: newContentValue,
-      user_accounts_id: userId,
+  
       created_at: newDateValue
     });
   } catch (err) {
@@ -198,6 +198,7 @@ app.put('/update_content', async (req, res) => {
 })
 
 // Creates a GET endpoint at <WHATEVER_THE_BASE_URL_IS>/user-content
+//i can use this to get the user title and content with a get request button in the front end
 app.get('/user-content', async (req, res) => {
   try {
     const { userId } = req.user;
@@ -217,7 +218,11 @@ app.delete('/delete_content/:id', async (req, res) => {
   const { id: contentId } = req.params;
 
   try {
-    await req.db.query(`UPDATE user_accounts SET deleted_flag = 1 WHERE id = :contentId`, { contentId });
+    await req.db.query(`
+      UPDATE user_accounts 
+      SET title = NULL, content = NULL, deleted_flag = 1 
+      WHERE id = :contentId
+    `, { contentId });
 
     res.json({ success: true });
   } catch (error) {

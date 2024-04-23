@@ -13,11 +13,11 @@ import DropdownMenu from './DropdownMenu';
 //each of the h3 elements will be update through useState and the backend
 
 const Sidebar = () => {
-  const [newTitleValue, setNewTitleValue] = useState('');
-  const [editTitleId, setEditTitleId] = useState('null');
-  const [currentTitleEditing, setCurrentTitleEditing] = useState('');
+  // const [newTitleValue, setNewTitleValue] = useState('');
+  // const [editTitleId, setEditTitleId] = useState('null');
+  // const [currentTitleEditing, setCurrentTitleEditing] = useState('');
 
-  const [titulo, setTitulo] = useState('');
+  // const [titulo, setTitulo] = useState('');
 
   // useEffect(() => {
   //   const fetchUser = async () => {
@@ -57,14 +57,6 @@ const Sidebar = () => {
   return (
     
     <aside>
-      <div className='side--content'>
-        <div className='sidebar--edit'>
-          <h4 className='tasks--edit'>Task Name</h4>
-        </div>
-        <div className='sidebar--dropdown'>
-          <DropdownMenu/>
-        </div>
-      </div>
       <div className='side--content'>
         <div className='sidebar--edit'>
           <h4 className='tasks--edit'>Task Name</h4>
