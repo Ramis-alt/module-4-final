@@ -4,10 +4,10 @@ import 'popper.js';
 import 'bootstrap';
 
 //the content here will update based on the sidebar selection and the backend
-const MainContent = () => {
+const MainContent = ({ content }) => {
   return (
     <main>
-        <p className='content--edit'>Content</p>
+        {content && <p className='content--edit'>{content}</p>}
     </main>
   )
 }

@@ -13,61 +13,21 @@ import DropdownMenu from './DropdownMenu';
 //each of the h3 elements will be update through useState and the backend
 
 const Sidebar = () => {
-  // const [newTitleValue, setNewTitleValue] = useState('');
-  // const [editTitleId, setEditTitleId] = useState('null');
-  // const [currentTitleEditing, setCurrentTitleEditing] = useState('');
 
-  // const [titulo, setTitulo] = useState('');
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const user = await getUser();
-  //     console.log(user);
-  //   }
-  //   fetchUser();
-  // }, [])
-
-//   useEffect(() => {
-//     fetchTasks();
-//   }, []);
-
-//   const fetchTasks = async () => {
-//     const tasks = await getTasks();
-//     setTitulo(tasks.title);
-//   }
-
-//  const handleCreatedTitle = async () => {
-//     await createTask({ newTitleValue });
-//     fetchTasks();
-//  }
-
-//  const handleDeletedTitle = async (id) => {
-//     await deleteTask(id);
-//     fetchTasks();
-//   }
-
-  const handleUpdateTitle = async (id) => {
-    await updateTask({ id, title: currentTitleEditing });
-    setEditTitleId(null);
-    fetchTasks();
-  }
-  // create a state for the sidebar
-  // const {open, setOpen} = React.useState(false)
-  // console.log(open)
   return (
-    
     <aside>
       <div className='side--content'>
         <div className='sidebar--edit'>
-          <h4 className='tasks--edit'>Task Name</h4>
+          <h4 className='tasks--edit'>{}</h4>
         </div>
         <div className='sidebar--dropdown'>
-          <DropdownMenu/>
+          <DropdownMenu />
         </div>
       </div>
     </aside>
-    
-  )
+  );
 }
+
 
 export default Sidebar

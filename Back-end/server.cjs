@@ -144,7 +144,10 @@ app.use(async function verifyJwt(req, res, next) {
 
   await next();
 });
-//creates new
+//creates new data for the user title and content and places a placeholder for the title
+
+
+
 app.post('/user-new-content', async (req, res) => {
   const { 
     newContentValue,
@@ -179,23 +182,55 @@ app.post('/user-new-content', async (req, res) => {
   }
 });
 
-//updates existing data
-app.put('/update_content', async (req, res) => {
-  const { id, title, content, created_at } = req.body;
+//updates existing data for just the title
+app.put('/update_title/:taskId', async (req, res) => {
+  const { taskId } = req.params;
+  const { title } = req.body;
+  try {
+    await req.db.query(
+      `UPDATE user_accounts SET title = :title WHERE id = :taskId AND deleted_flag = 0;`, 
+      { title, taskId }
+    );
 
-  const [tasks] = await req.db.query(
-    `UPDATE user_accounts SET title = :updatedTitle, content = :updatedContent, created_at = :updatedDate WHERE user_accounts = :userId AND id = :id;`, 
-    { 
-      id,
-      userId,
-      title: updatedTitle,
-      content: updatedContent,
-      created_at: updatedDate
-     });
+    res.json({ success: true });
+  } catch (err) {
+    console.log('Error updating task title:', err);
+    res.status(500).json({ message: 'Internal Server Error, could not update task title', success: false });
+  }
+});
 
-  // Attaches JSON content to the response
-  res.json({ id, title, content, created_at, success: true });
-})
+//updates existing data for just the content
+app.put('/update_content/:taskId', async (req, res) => {
+  const { taskId } = req.params;
+  const { content } = req.body;
+  try {
+    await req.db.query(
+      `UPDATE user_accounts SET content = :content WHERE id = :taskId AND deleted_flag = 0;`, 
+      { content, taskId }
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    console.log('Error updating task content:', err);
+    res.status(500).json({ message: 'Internal Server Error, could not update task content', success: false });
+  }
+});
+
+// app.put('/update_content', async (req, res) => {
+//   const { id, title, content, created_at } = req.body;
+
+//   const [tasks] = await req.db.query(
+//     `UPDATE user_accounts SET title = :updatedTitle, content = :updatedContent, created_at = :updatedDate WHERE user_accounts = :userId AND id = :id;`, 
+//     { 
+//       id,
+//       userId,
+//       title: updatedTitle,
+//       content: updatedContent,
+//       created_at: updatedDate
+//      });
+
+//   res.json({ id, title, content, created_at, success: true });
+// })
 
 // Creates a GET endpoint at <WHATEVER_THE_BASE_URL_IS>/user-content
 //i can use this to get the user title and content with a get request button in the front end
@@ -213,7 +248,7 @@ app.get('/user-content', async (req, res) => {
   }
 });
 
-
+//link to dropdowm menu in the front end
 app.delete('/delete_content/:id', async (req, res) => {
   const { id: contentId } = req.params;
 
