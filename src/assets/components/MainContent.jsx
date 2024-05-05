@@ -1,4 +1,6 @@
+
 import React from 'react'
+
 // src/main.js or any other JavaScript file
 import 'popper.js';
 import 'bootstrap';
@@ -7,7 +9,7 @@ import 'bootstrap';
 const MainContent = ({ content }) => {
   return (
     <main>
-        {content && <p className='content--edit'>{content}</p>}
+      {content ? <p className='content--edit'>{content}</p> : null}
     </main>
   )
 }

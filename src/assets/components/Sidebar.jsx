@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import { getTasks, createTask, deleteTask, updateTask } from '../../ApiServices/TasksService'
 // import { getUser } from '../../ApiServices/UserService'
 
@@ -10,20 +10,22 @@ import DropdownMenu from './DropdownMenu';
 
 
 
-//each of the h3 elements will be update through useState and the backend
+const Sidebar = ({ title, setSelectedTask, setSelectedAction }) => {
 
-const Sidebar = () => {
-
+  const tasks = getTasks();
 
   return (
     <aside>
       <div className='side--content'>
-        <div className='sidebar--edit'>
-          <h4 className='tasks--edit'>{}</h4>
-        </div>
-        <div className='sidebar--dropdown'>
+        {tasks.map((task) => (
+          <div className='sidebar--edit' key={task.id} onClick={() => setSelectedTask(task.id)}>
+            {tasks.title ? <h4 className='tasks--edit'>{tasks.title}</h4> : null}
+            <DropdownMenu taskId={task.id} setSelectedAction={setSelectedAction} />
+          </div>
+        ))}
+        {/* <div className='sidebar--dropdown'>
           <DropdownMenu />
-        </div>
+        </div> */}
       </div>
     </aside>
   );
