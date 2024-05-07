@@ -1,16 +1,11 @@
-// import { useState, useEffect } from 'react'
 import React from 'react'
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
 import MainContent from '../MainContent'
 import Footer from '../Footer'
-// import { getTasks, createTask, deleteTask, updateTask } from '../../ApiServices/TasksService'
-import { getTasks } from '../../../ApiServices/TasksService'
-// import { Link } from 'react-router-dom'
-
+import { getTasks, createTask, updateTask, updateTaskTitle } from '../../../ApiServices/TasksService'
 
 const MainPage = () => {
-
   const [tasks, setTasks] = React.useState([]);
   const [selectedTask, setSelectedTask] = React.useState(null);
   const [selectedAction, setSelectedAction] = React.useState(null);
@@ -19,12 +14,16 @@ const MainPage = () => {
     const fetchTasks = async () => {
       try {
         const response = await getTasks();
-        setTasks(response);
+        if (response && Array.isArray(response.userData)) {
+          setTasks(response.userData);
+        } else {
+          console.error('Error fetching tasks: response is not an array', response);
+        }
       } catch (error) {
         console.error('Error fetching tasks:', error);
       }
     };
-
+  
     fetchTasks();
   }, []);
 
@@ -34,16 +33,17 @@ const MainPage = () => {
 
   const handleCreateTask = async (newContentValue, newDateValue) => {
     try {
-      await fetch('/user-new-content', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          newContentValue: newContentValue,
-          newDateValue: newDateValue,
-        }),
-      });
+      await createTask({ newContentValue, newDateValue });
+  
+      const response = await getTasks();
+      if (response && Array.isArray(response.userData)) {
+        setTasks(response.userData);
+        // Assume the new task is the last one in the list
+        const newTask = response.userData[response.userData.length - 1];
+        setSelectedTask(newTask.id);
+      } else {
+        console.error('Error fetching tasks: response is not an array', response);
+      }
     } catch (error) {
       console.error('Error creating task:', error);
     }
@@ -51,33 +51,60 @@ const MainPage = () => {
 
   const handleRenameTask = async (newTitle) => {
     try {
-      await fetch(`/update_title/${selectedTask}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          title: newTitle,
-        }),
-      });
+      await updateTaskTitle(newTitle, selectedTask);
+      const response = await getTasks();
+      if (response && Array.isArray(response.userData)) {
+        setTasks(response.userData);
+        // Update the selectedTask state to the ID of the newly renamed task
+        setSelectedTask(selectedTask);
+      } else {
+        console.error('Error fetching tasks: response is not an array', response);
+      }
     } catch (error) {
       console.error('Error renaming task:', error);
     }
   };
-
+  
   const handleUpdateContent = async (newContent) => {
     try {
-      await fetch(`/update_content/${selectedTask}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          content: newContent,
-        }),
-      });
+      // Fetch the current content of the task
+      const currentTask = tasks.find(task => task.id === selectedTask);
+      const currentContent = currentTask ? currentTask.content : '';
+  
+      // Append the new content to the current content
+      const combinedContent = `${currentContent}\n${newContent}`;
+  
+      // Update the task with the combined content
+      await updateTask({ content: combinedContent }, selectedTask);
+  
+      const response = await getTasks();
+      if (response && Array.isArray(response.userData)) {
+        setTasks(response.userData);
+        // Update the selectedTask state to the ID of the updated task
+        setSelectedTask(selectedTask);
+      } else {
+        console.error('Error fetching tasks: response is not an array', response);
+      }
     } catch (error) {
       console.error('Error updating task content:', error);
+    }
+  };
+
+  const handleDeleteTask = async (taskId) => {
+    try {
+      await deleteTask(taskId);
+      const response = await getTasks();
+      if (response && Array.isArray(response.userData)) {
+        setTasks(response.userData);
+        // If the deleted task was selected, deselect it
+        if (taskId === selectedTask) {
+          setSelectedTask(null);
+        }
+      } else {
+        console.error('Error fetching tasks: response is not an array', response);
+      }
+    } catch (error) {
+      console.error('Error deleting task:', error);
     }
   };
 
@@ -89,7 +116,7 @@ const MainPage = () => {
             <Navbar />
           </div>
           <div className="sidebar--bar">
-            <Sidebar title={title} setSelectedTask={setSelectedTask} setSelectedAction={setSelectedAction} />
+            <Sidebar title={title} setSelectedTask={setSelectedTask} setSelectedAction={setSelectedAction} handleDeleteTask={handleDeleteTask}/>
           </div>
           <div className="maincontent--bar">
             <MainContent content={content} />

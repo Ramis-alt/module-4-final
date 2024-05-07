@@ -2,22 +2,10 @@ import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 
-function DropdownMenu({ taskId, setSelectedAction }) {
+function DropdownMenu({ taskId, setSelectedAction, handleDeleteTask }) {
   const handleDropdown = (action) => {
     setSelectedAction(action);
   }
-
-  // Function to delete the task
-  const handleDeleteTask = async () => {
-    try {
-      // Make a DELETE request to delete the task
-      await fetch(`/delete_content/${taskId}`, {
-        method: 'DELETE',
-      });
-    } catch (error) {
-      console.error('Error deleting task:', error);
-    }
-  };
 
   return (
     <Dropdown className='fixed--button'>
@@ -26,9 +14,9 @@ function DropdownMenu({ taskId, setSelectedAction }) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-2" onClick={() => handleDropdown('rename')}>Rename Title</Dropdown.Item>
-        <Dropdown.Item href="#/action-3" onClick={() => handleDropdown('update')}>Update Content</Dropdown.Item>
-        <Dropdown.Item href="#/action-4" onClick={handleDeleteTask}>Delete</Dropdown.Item>
+        <Dropdown.Item href="#/action-1" onClick={() => handleDropdown('rename')}>Rename Title</Dropdown.Item>
+        <Dropdown.Item href="#/action-2" onClick={() => handleDropdown('update')}>Update Content</Dropdown.Item>
+        <Dropdown.Item href="#/action-3" onClick={() => handleDeleteTask(taskId)}>Delete</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

@@ -158,15 +158,13 @@ app.post('/user-new-content', async (req, res) => {
   const newTitleValue = "New Task"; // hardcoding the placeholder for the title so that it can be updated later
   try {
     const [insert] = await req.db.query(`
-      INSERT INTO user_accounts (title, content, id, deleted_flag, created_at)
-      VALUES (:newTitleValue, :newContentValue, :userId, :deleted_flag, :newDateValue);
-    `, { 
-      newTitleValue, // placeholder for the title
-      newContentValue, // placeholder for the content
-      userId, // placeholder for the user id
-      deleted_flag: 0, // placeholder for the deleted flag
-      newDateValue // placeholder for the created_at date
-    });
+    INSERT INTO user_data (title, content, user_id, deleted_flag)
+    VALUES (:newTitleValue, :newContentValue, :userId, 0);
+  `, { 
+    newTitleValue, // placeholder for the title
+    newContentValue, // placeholder for the content
+    userId, // placeholder for the user id
+  });
 
     // Attaches JSON content to the response
     res.json({
@@ -188,7 +186,7 @@ app.put('/update_title/:taskId', async (req, res) => {
   const { title } = req.body;
   try {
     await req.db.query(
-      `UPDATE user_accounts SET title = :title WHERE id = :taskId AND deleted_flag = 0;`, 
+      `UPDATE user_data SET title = :title WHERE id = :taskId AND deleted_flag = 0;`, 
       { title, taskId }
     );
 
@@ -199,13 +197,12 @@ app.put('/update_title/:taskId', async (req, res) => {
   }
 });
 
-//updates existing data for just the content
 app.put('/update_content/:taskId', async (req, res) => {
   const { taskId } = req.params;
   const { content } = req.body;
   try {
     await req.db.query(
-      `UPDATE user_accounts SET content = :content WHERE id = :taskId AND deleted_flag = 0;`, 
+      `UPDATE user_data SET content = :content WHERE id = :taskId AND deleted_flag = 0;`, 
       { content, taskId }
     );
 
@@ -216,21 +213,6 @@ app.put('/update_content/:taskId', async (req, res) => {
   }
 });
 
-// app.put('/update_content', async (req, res) => {
-//   const { id, title, content, created_at } = req.body;
-
-//   const [tasks] = await req.db.query(
-//     `UPDATE user_accounts SET title = :updatedTitle, content = :updatedContent, created_at = :updatedDate WHERE user_accounts = :userId AND id = :id;`, 
-//     { 
-//       id,
-//       userId,
-//       title: updatedTitle,
-//       content: updatedContent,
-//       created_at: updatedDate
-//      });
-
-//   res.json({ id, title, content, created_at, success: true });
-// })
 
 // Creates a GET endpoint at <WHATEVER_THE_BASE_URL_IS>/user-content
 //i can use this to get the user title and content with a get request button in the front end
@@ -238,7 +220,7 @@ app.get('/user-content', async (req, res) => {
   try {
     const { userId } = req.user;
 
-    const [userData] = await req.db.query(`SELECT * FROM user_accounts WHERE id = :userId AND deleted_flag = 0;`, { userId });
+    const [userData] = await req.db.query(`SELECT * FROM user_data WHERE user_id = :userId AND deleted_flag = 0;`, { userId });
 
     // Attaches JSON content to the response
     res.json({ userData });
@@ -254,8 +236,8 @@ app.delete('/delete_content/:id', async (req, res) => {
 
   try {
     await req.db.query(`
-      UPDATE user_accounts 
-      SET title = NULL, content = NULL, deleted_flag = 1 
+      UPDATE user_data 
+      SET deleted_flag = 1 
       WHERE id = :contentId
     `, { contentId });
 
