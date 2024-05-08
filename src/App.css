@@ -31,7 +31,6 @@
 .footer--bar {
   background-color: #d9d9d9;
   color: white;
-  /* margin: 5px; */
   padding: 10px;
   /* border: skyblue 1px solid; */
   border-radius: 5px;
@@ -60,17 +59,16 @@
     display: flex;
     text-wrap: none;
     width: 100%;
+    color: #6c6b65;
 }
 
 .button--nav--container{
   display: flex;
   width: 100%;
   justify-content: end;
-  /* align-items: center; */
 }
 
 .button--nav--edit {
-  /* display: flex; */
   height: 30px;
   width: 100px;
   background-color: #6c6b65;
@@ -89,14 +87,21 @@
   grid-area: sidebar;
   display: flex;
   padding: 0px;
-  /* width: 200px; */
 }
 
 .maincontent--bar{
   grid-area: content;
-  /* width:1125px */
   align-items: stretch;
+}
+
+.sidebar--bar {
+  overflow-y: auto; 
   
+}
+
+.side--content div {
+  min-height: 50px; 
+  max-height: auto;
 }
 
 .content--edit {
@@ -106,8 +111,6 @@
 /* CSS for input field and form */
 .footer--bar{
   grid-area: footer;
-  /* grid-column-start: 2;
-  grid-column-end: 5; */
 }
 
 .footer--container--edit {
@@ -125,7 +128,6 @@
 .form--edit {
   display: flex;
   height: 100px;
-  /* width: 100%; */
 }
 
 .input--footer {
@@ -136,14 +138,13 @@
 
 
 .footer--button {
-  /* outline:none; */
   border-radius: 5px;
   transition: background-color 0.3s ease;
   border: none;
 }
 
 .footer--button:hover{
-  background-color: #e74c3c;
+  background-color: #8a8984;
   cursor: pointer; 
 }
 
@@ -188,7 +189,6 @@ aside {
   color: white;
   margin: 5px;
   width: 100%;
-  /* grid-template-columns: repeat(2,1fr); */
 }
 
 .scrolldown--edit {
@@ -201,19 +201,22 @@ aside {
 
 .side--content {
   display: inline-flex;
-  /* flex-wrap: nowrap; */
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-content: space-evenly;
   align-items: center;
-  background-color: #6c6b65;
   padding: 2px;
   margin: 5px;
   gap: 10px;
-  /* border: #e74c3c 1px solid; */
-  border-radius: 5px;
 }
 
+.side--content div {
+  background-color: #6c6b65;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  border-radius: 5px;
+}
 
 .btn-no-outline:focus {
   outline: none;
@@ -236,14 +239,12 @@ aside {
   align-items: center;
   align-content: center;
   height: 100vh;
-  /* margin-top: 100px; */
   background-color: #b3a495;
 }
 
 .login--container {
   display: grid;
   justify-content: center;
-  /* align-items: center; */
   align-content: center;
   height: 70%;
   max-width: auto;
@@ -255,9 +256,6 @@ aside {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
-  /* align-items: center;
-  align-content: center; */
   padding: 10px;
   color: white;
   background-color: rgb(109 100 100);
@@ -321,14 +319,12 @@ label{
   align-items: center;
   align-content: center;
   height: 100vh;
-  /* margin-top: 100px; */
   background-color: #b3a495;
 }
 
 .register--container {
   display: grid;
   justify-content: center;
-  /* align-items: center; */
   align-content: center;
   height: 70%;
   max-width: auto;
@@ -342,4 +338,25 @@ label{
 .text-muted {
   color: white;
   text-decoration: none;
+}
+
+/* css for create new task button on footer */
+.create--new--task--edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: black;
+  padding: 10px;
+  background-color: rgba(247, 243, 243, 0.603);
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease;
+  margin-right: 15px;
+}
+
+.create--new--task--edit:hover {
+  background-color: #8a8984;
+  cursor: pointer; 
 }

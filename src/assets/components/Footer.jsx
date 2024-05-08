@@ -10,9 +10,11 @@ const Footer = ({ handleCreateTask, handleRenameTask, handleUpdateContent, selec
     switch (selectedAction) {
       case 'rename':
         handleRenameTask(inputValue);
+        setInputValue(''); // Clear the input field
         break;
       case 'update':
         handleUpdateContent(inputValue);
+        setInputValue(''); // Clear the input field
         break;
       default:
         break;
@@ -40,7 +42,7 @@ const Footer = ({ handleCreateTask, handleRenameTask, handleUpdateContent, selec
         </form>
       </div>
       <div className="button--footer--container">
-        <button onClick={handleCreate}>Create New Task</button>
+        <button className='create--new--task--edit' onClick={handleCreate}>Create New Task</button>
         <button type="submit" form="form--edit" className='footer--button'><img className='image--footer--edit' src='./src/images/Submitblue-button.png' /></button>
       </div>
     </footer>

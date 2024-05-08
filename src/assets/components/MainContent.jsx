@@ -1,7 +1,6 @@
 
 import React from 'react'
 
-// src/main.js or any other JavaScript file
 import 'popper.js';
 import 'bootstrap';
 

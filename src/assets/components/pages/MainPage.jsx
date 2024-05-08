@@ -116,7 +116,7 @@ const MainPage = () => {
             <Navbar />
           </div>
           <div className="sidebar--bar">
-            <Sidebar title={title} setSelectedTask={setSelectedTask} setSelectedAction={setSelectedAction} handleDeleteTask={handleDeleteTask}/>
+            <Sidebar title={title} setSelectedTask={setSelectedTask} tasks={tasks} setSelectedAction={setSelectedAction} handleDeleteTask={handleDeleteTask}/>
           </div>
           <div className="maincontent--bar">
             <MainContent content={content} />
