@@ -4,7 +4,6 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-
 import { register } from "../../../ApiServices/AuthService";
 import { setUser } from "../../../ApiServices/UserService";
 import { setJwt } from "../../../ApiServices/JwtService";

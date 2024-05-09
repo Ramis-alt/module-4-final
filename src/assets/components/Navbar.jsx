@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { removeJwt } from '../../ApiServices/JwtService'
@@ -14,8 +13,6 @@ const Navbar = () => {
 
 const [currentUser, setCurrentUser] = useState('');
 
-
-
 useEffect(() => {
   const fetchUserData = async () => {
     try {
@@ -29,8 +26,6 @@ useEffect(() => {
   fetchUserData();
 }, []); // Empty dependency array ensures useEffect runs only once, do not change this
 
-
-// console.log(fetchUser)
   return (
     <div className='nav--content'>
       <img className='img--nav--edit' src='./src/images/Tusker-Remake-100-cutout 1.png'/>

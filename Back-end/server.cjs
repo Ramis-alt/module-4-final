@@ -146,8 +146,6 @@ app.use(async function verifyJwt(req, res, next) {
 });
 //creates new data for the user title and content and places a placeholder for the title
 
-
-
 app.post('/user-new-content', async (req, res) => {
   const { 
     newContentValue,
@@ -215,7 +213,6 @@ app.put('/update_content/:taskId', async (req, res) => {
 
 
 // Creates a GET endpoint at <WHATEVER_THE_BASE_URL_IS>/user-content
-//i can use this to get the user title and content with a get request button in the front end
 app.get('/user-content', async (req, res) => {
   try {
     const { userId } = req.user;
@@ -247,8 +244,6 @@ app.delete('/delete_content/:id', async (req, res) => {
     res.status(500).json({ success: false, error: 'Failed to delete content' });
   }
 });
-
-
 // Start the Express server
 app.listen(port, () => {
   console.log(`server started at http://localhost:${port}`);

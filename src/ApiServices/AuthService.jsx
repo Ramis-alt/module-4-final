@@ -1,5 +1,4 @@
 import { API_URL } from "../environments";
-// Removed the AuthRequestBody interface
 
 export const register = async (body) => {
   const response = await fetch(`${API_URL}/register`, {
