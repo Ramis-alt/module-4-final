@@ -17,6 +17,7 @@ The following dependencies are needed for this project.
 - nodemon (as a devDependency)
 
 ## The Project was created using the following languages, libraries/framework and database management:
+- Vite (as the build tool)
 - Javascrip
 - React
 - HTML
