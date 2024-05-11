@@ -35,7 +35,11 @@ const Login = () => {
       <div className='login--container'>
         <div className='left--side--container'>
           <h1>Tusker</h1>
-          <p>Create & edit tasks with ease</p>
+          <p className='description-edit'>Tusker allows you to:</p>
+          <p className='description-edit'>Create your tasks with ease!</p>
+          <p className='description-edit'>Update your tasks!</p>
+          <p className='description-edit'>Delete and rename</p>
+          <img src='./src/images/Tusker-Remake-100-cutout 1.png' className='login--image--edit' alt='Tusker Logo' />
         </div>
         <div className='right--side--container'>
           <form onSubmit={handleLogin}>

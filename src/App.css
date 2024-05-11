@@ -239,6 +239,10 @@ aside {
   align-items: center;
   align-content: center;
   height: 100vh;
+  background-image: url(./images/Landscape1.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-color: #b3a495;
 }
 
@@ -258,9 +262,21 @@ aside {
   align-items: center;
   padding: 10px;
   color: white;
-  background-color: rgb(109 100 100);
+  background-color: rgba(109, 100, 100, 0.5);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+}
+
+.description-edit {
+  font-weight: bold;
+  color: rgb(220, 213, 213);
+}
+
+.login--image--edit {
+  display: flex;
+  padding: 12px;
+  height: 25%;
+  margin-top: 50px;
 }
 
 .right--side--container {
@@ -271,7 +287,7 @@ aside {
   align-content: center;
   height: 50vh;
   max-width: 960px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 10px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -295,7 +311,9 @@ button.edit--login-button {
 }
 
 .form--group{
+  display: flex;
   margin: 20px;
+  justify-content: space-between;
 }
 
 input{
@@ -319,6 +337,10 @@ label{
   align-items: center;
   align-content: center;
   height: 100vh;
+  background-image: url(./images/Landscape2.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-color: #b3a495;
 }
 
@@ -329,10 +351,11 @@ label{
   height: 70%;
   max-width: auto;
   grid-template-columns: 1fr;
-  background-color: rgb(109 100 100);
+  /* background-color: rgb(109 100 100); */
   padding: 20px;
   border-radius: 10px;
   color: white;
+  background-color: rgba(179, 164, 149, 0.5);
 }
 
 .text-muted {
@@ -360,3 +383,4 @@ label{
   background-color: #8a8984;
   cursor: pointer; 
 }
+
