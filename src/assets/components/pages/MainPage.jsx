@@ -3,7 +3,8 @@ import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
 import MainContent from '../MainContent'
 import Footer from '../Footer'
-import { getTasks, createTask, updateTask, updateTaskTitle } from '../../../ApiServices/TasksService'
+//distructured the getTasks, createTask, updateTask, updateTaskTitle, deleteTask from the TasksService
+import { getTasks, createTask, updateTask, updateTaskTitle, deleteTask } from '../../../ApiServices/TasksService'
 
 const MainPage = () => {
   const [tasks, setTasks] = React.useState([]);
@@ -26,7 +27,7 @@ const MainPage = () => {
   
     fetchTasks();
   }, []);
-
+  //selectedTaskObj is the task object that has the same id as the selectedTask which is responsible for displaying the content of the selected task
   const selectedTaskObj = tasks.find(task => task.id === selectedTask);
   const content = selectedTaskObj ? selectedTaskObj.content : '';
   const title = selectedTaskObj ? selectedTaskObj.title : '';

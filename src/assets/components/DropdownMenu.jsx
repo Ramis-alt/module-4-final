@@ -5,6 +5,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 function DropdownMenu({ taskId, setSelectedAction, handleDeleteTask }) {
   const handleDropdown = (action) => {
     setSelectedAction(action);
+    console.log('Selected action:', action);
   }
 
   return (

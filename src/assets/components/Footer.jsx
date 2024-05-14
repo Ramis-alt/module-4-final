@@ -26,7 +26,7 @@ const Footer = ({ handleCreateTask, handleRenameTask, handleUpdateContent, selec
     handleCreateTask(inputValue, newDateValue);
     setInputValue(''); // Clear the input field
   };
-
+  
   return (
     <footer className='footer--container--edit'>
       <div className='form--container'>

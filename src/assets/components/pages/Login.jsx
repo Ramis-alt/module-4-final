@@ -38,7 +38,7 @@ const Login = () => {
           <p className='description-edit'>Tusker allows you to:</p>
           <p className='description-edit'>Create your tasks with ease!</p>
           <p className='description-edit'>Update your tasks!</p>
-          <p className='description-edit'>Delete and rename</p>
+          <p className='description-edit'>Delete and rename!</p>
           <img src='./src/images/Tusker-Remake-100-cutout 1.png' className='login--image--edit' alt='Tusker Logo' />
         </div>
         <div className='right--side--container'>
