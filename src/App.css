@@ -261,7 +261,9 @@ aside {
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  height: 50vh;
   color: white;
+  max-width: 960px;
   background-color: rgba(109, 100, 100, 0.5);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -274,9 +276,11 @@ aside {
 
 .login--image--edit {
   display: flex;
-  padding: 12px;
-  height: 25%;
-  margin-top: 50px;
+  padding: 1px;
+  width: 8vw;
+  height: auto;
+  margin-right: 20px;
+  margin-top: 25px;
 }
 
 .right--side--container {
@@ -360,6 +364,11 @@ label{
 
 .text-muted {
   color: white;
+  text-decoration: none;
+}
+
+a {
+  color: rgb(0, 0, 0) !important;
   text-decoration: none;
 }
 
