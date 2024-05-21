@@ -9,7 +9,7 @@ const Sidebar = ({ title, setSelectedTask, setSelectedAction, tasks, handleDelet
       <div className='side--content'>
         {Array.isArray(tasks) && tasks.map((task) => (
           <div className='sidebar--edit' key={task.id} onClick={() => setSelectedTask(task.id)}>
-            {task.title ? <h4 className='tasks--edit'>{task.title}</h4> : null}
+            {task.title ? <h4 className='tasks--edit'>{task.title}</h4> : null} 
             <DropdownMenu taskId={task.id} setSelectedAction={setSelectedAction} handleDeleteTask={handleDeleteTask} />
           </div>
         ))}

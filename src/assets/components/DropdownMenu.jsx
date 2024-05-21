@@ -1,7 +1,7 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 
-
+//props are taskId, setSelectedAction, handleDeleteTask passed from MainPage.jsx
 function DropdownMenu({ taskId, setSelectedAction, handleDeleteTask }) {
   const handleDropdown = (action) => {
     setSelectedAction(action);

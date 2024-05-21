@@ -22,7 +22,7 @@ const Footer = ({ handleCreateTask, handleRenameTask, handleUpdateContent, selec
   };
 
   const handleCreate = () => {
-    const newDateValue = new Date().toISOString(); // Use the current date and time as newDateValue
+    const newDateValue = new Date().toISOString(); // Use the current date and time as newDateValue(may add it later)
     handleCreateTask(inputValue, newDateValue);
     setInputValue(''); // Clear the input field
   };

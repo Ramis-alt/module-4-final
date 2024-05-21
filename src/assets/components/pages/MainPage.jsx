@@ -3,7 +3,7 @@ import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
 import MainContent from '../MainContent'
 import Footer from '../Footer'
-//distructured the getTasks, createTask, updateTask, updateTaskTitle, deleteTask from the TasksService
+//distructured the getTasks, createTask, updateTask, updateTaskTitle, deleteTask from the TasksService.jsx file
 import { getTasks, createTask, updateTask, updateTaskTitle, deleteTask } from '../../../ApiServices/TasksService'
 
 const MainPage = () => {
@@ -11,6 +11,8 @@ const MainPage = () => {
   const [selectedTask, setSelectedTask] = React.useState(null);
   const [selectedAction, setSelectedAction] = React.useState(null);
 
+  //my useEffect function is used to fetch the tasks from the backend server and set the tasks state to the response when
+  //the MainPage component is first rendered and every time the component updates.
   React.useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -26,6 +28,7 @@ const MainPage = () => {
     };
   
     fetchTasks();
+    //this empty array is used to ensure that the fetchTasks function is only called once when the MainPage component is first rendered
   }, []);
   //selectedTaskObj is the task object that has the same id as the selectedTask which is responsible for displaying the content of the selected task
   const selectedTaskObj = tasks.find(task => task.id === selectedTask);

@@ -2,7 +2,7 @@ import React from 'react'
 import 'popper.js';
 import 'bootstrap';
 
-//the content here will update based on the sidebar selection and the backend
+//the content here will update based on the sidebar selection and the backend.
 const MainContent = ({ content }) => {
   return (
     <main>

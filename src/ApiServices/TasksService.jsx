@@ -2,7 +2,7 @@
 import { API_URL } from '../environments';
 import { getJwt } from './JwtService';
 
-// all get imported into MainPage.jsx
+// all get imported into MainPage.jsx. These functions are used to interact with the back-end server
 
 export const createTask = async (body) => {
   const response = await fetch(`${API_URL}/user-new-content`, {

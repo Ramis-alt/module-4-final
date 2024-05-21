@@ -233,6 +233,34 @@ aside {
 
 /* login css below */
 
+.modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  /* height: 100vh;
+  background-image: url(./images/Landscape1.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #b3a495; */
+
+}
+
+.alert--edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 10vw;
+  height: 15vh;
+  padding: 10px;
+  /* border-radius: 5px; */
+  /* margin: 10px; */
+
+}
+
+
 .login--body--container {
   display: flex;
   justify-content: center;
